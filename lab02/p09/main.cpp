@@ -8,7 +8,7 @@ int main()
     cin >> l >> r;
     if (l != r)
     {
-        cout << "Odd " << l * 2 + 1 << "\n";
+        cout << "Odd " << max(l, r) * 2 << "\n";
     }
     else if (l == 0 && r == 0)
     {
