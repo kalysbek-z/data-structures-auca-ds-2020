@@ -10,7 +10,7 @@ int main()
     {
         cout << "NO\n";
     }
-    else if (b < a + b + c)
+    else if (n <= a + b + c && n >= 3)
     {
         cout << "YES\n";
     }
