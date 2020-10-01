@@ -25,7 +25,7 @@ int main()
     {
         p = "Estate";
     }
-    string ore;
+    string ore = "Copper";
     if (all > 5)
     {
         ore = "Gold";
