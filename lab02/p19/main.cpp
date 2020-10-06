@@ -24,6 +24,7 @@ int main()
         }
     }
     if (!snowed)
+
     {
         cout << "It had never snowed this early!";
     }
