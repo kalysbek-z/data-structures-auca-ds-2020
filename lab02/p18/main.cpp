@@ -11,7 +11,7 @@ int main()
 {
     string s;
     cin >> s;
-    int a, b;
+    int a = 0, b = 0;
     for (int i = 0; i < s.size(); i += 2)
     {
         if (s[i] == 'A')
@@ -23,15 +23,12 @@ int main()
             b += s[i + 1];
         }
     }
-    if (a >= 11 && a - b >= 2)
+    if (a > b)
     {
         cout << "A\n";
-        return 0;
     }
-
-    if (b >= 11 && b - a >= 2)
+    else
     {
         cout << "B\n";
-        return 0;
     }
 }
