@@ -7,30 +7,31 @@
 
 using namespace std;
 
-double price(double p, double a, double b, double c, double d, int k)
+long double price(long double p, long double a, long double b, long double c, long double d, int k)
 {
-    double pr = p * (sin(a * k + b) + cos(c * k + d) + 2);
+    long double pr = p * ((long double)sin(a * k + b) + (long double)cos(c * k + d) + 2);
     return pr;
 }
 
 int main()
 {
     int n;
-    double p, a, b, c, d;
+    long double p, a, b, c, d;
     cin >> p >> a >> b >> c >> d >> n;
-    vector<double> pr;
+    vector<long double> pr;
     for (int i = 0; i < n; i++)
     {
         pr.push_back(price(p, a, b, c, d, i));
     }
 
-    double maxim = pr[0];
-    double res = 0;
+    long double maxim = pr[0];
+    long double res = 0;
     for (int j = 1; j < n; j++)
     {
         res = max(res, maxim - pr[j]);
         maxim = max(maxim, pr[j]);
     }
 
-    printf("%.9f", res);
+    cout.precision(9);
+    cout << fixed << res << "\n";
 }
