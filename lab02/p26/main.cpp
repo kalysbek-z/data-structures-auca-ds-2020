@@ -14,8 +14,8 @@ int main()
     cin >> n;
     while (n--)
     {
-        int p, r, f;
-        int c = 0;
+        long long p, r, f;
+        long long c = 0;
         cin >> p >> r >> f;
         while (p <= f)
         {
