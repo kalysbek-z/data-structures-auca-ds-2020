@@ -28,8 +28,8 @@ int main()
     double res = 0;
     for (int j = 1; j < n; j++)
     {
-        res = max(maxim, maxim - pr[j + 1]);
-        maxim = max(maxim, pr[j + 1]);
+        res = max(res, maxim - pr[j]);
+        maxim = max(maxim, pr[j]);
     }
 
     printf("%.9f", res);
