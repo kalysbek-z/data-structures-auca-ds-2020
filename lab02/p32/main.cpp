@@ -17,11 +17,11 @@ int main()
         {
             if (n1 == 21 || n2 == 21)
             {
-                (n1 == 21) ? cout << "Player 1 wins\n" : cout << "Player 2 wins\n";
+                (n1 == 21) ? cout << "Player 1 wins.\n" : cout << "Player 2 wins.\n";
             }
             else
             {
-                (n1 > n2) ? cout << "Player 1 wins\n" : cout << "Player 2 wins\n";
+                (n1 > n2) ? cout << "Player 1 wins.\n" : cout << "Player 2 wins.\n";
             }
         }
     }
