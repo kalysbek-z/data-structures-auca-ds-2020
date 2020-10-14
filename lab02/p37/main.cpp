@@ -34,7 +34,7 @@ int main()
     {
         cout << "INCREASING\n";
     }
-    else if (count < 0)
+    else if (count <= 0)
     {
         cout << "DECREASING\n";
     }
