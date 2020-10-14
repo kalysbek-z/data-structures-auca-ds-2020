@@ -17,30 +17,33 @@ int main()
     {
         int g, m;
         cin >> g >> m;
-        int sg, sm;
+        vector<int> ag(g);
+        vector<int> am(m);
         for (int i = 0; i < g; i++)
         {
-            int army;
-            cin >> army;
-            sg += army;
+            cin >> ag[i];
         }
         for (int i = 0; i < m; i++)
         {
-            int army;
-            cin >> army;
-            sm += army;
+            cin >> am[i];
         }
-        if (sg > sm || sg == sm)
+        sort(ag.begin(), ag.end(), greater<int>());
+        sort(am.begin(), am.end(), greater<int>());
+        for (int i = 0; i < max(g, m); i++)
         {
-            cout << "Godzilla\n";
+            if (ag[ag.size() - 1] >= am[am.size() - 1])
+            {
+                am.pop_back();
+            }
+            else if (ag[ag.size() - 1] < am[am.size() - 1])
+            {
+                ag.pop_back();
+            }
+            else
+            {
+                am.pop_back();
+            }
         }
-        else if (sg < sm)
-        {
-            cout << "MechaGodzilla\n";
-        }
-        else
-        {
-            cout << "uncertain\n";
-        }
+        (ag.size() > am.size()) ? cout << "Godzilla\n" : cout << "MechaGodzilla\n";
     }
 }
