@@ -9,16 +9,12 @@ int main()
     vector<double> percent(101);
     while (cin >> duration >> dp >> loan >> record)
     {
-        if (duration < 0)
-        {
-            break;
-        }
         int m;
         double per;
         while (record--)
         {
             cin >> m >> per;
-            for (int i = m; i < percent.size(); i++)
+            for (int i = m; i < 101; i++)
             {
                 percent[i] = per;
             }
@@ -31,7 +27,7 @@ int main()
         {
             res++;
             loanNow -= forMonth;
-            price = price * (1 - percent[res]);
+            price *= (1 - percent[res]);
         }
         if (res > 1)
         {
