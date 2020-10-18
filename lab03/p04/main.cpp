@@ -7,7 +7,7 @@ int main()
     int duration, record;
     double dp, loan, forMonth, loanNow;
     vector<double> percent(101);
-    while (cin >> duration >> dp >> loan >> record)
+    while (cin >> duration >> dp >> loan >> record && duration >= 0)
     {
         int m;
         double per;
@@ -29,7 +29,7 @@ int main()
             loanNow -= forMonth;
             price *= (1 - percent[res]);
         }
-        if (res > 1)
+        if (res > 1 || res == 0)
         {
             cout << res << " months\n";
         }
