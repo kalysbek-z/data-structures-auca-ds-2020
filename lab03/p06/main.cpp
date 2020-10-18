@@ -16,30 +16,26 @@ int main()
         }
         sort(id.begin(), id.end());
         int catC;
-        int req = 0;
-        bool found = false;
-        vector<int> reqId;
+        int req;
+        bool found = true;
+        int num;
         for (int i = 0; i < cat; i++)
         {
-            int reqN;
-            cin >> catC >> reqN;
-            req += reqN;
-            while (catC--)
+            int count = 0;
+            cin >> catC >> req;
+            for (int j = 0; j < catC; j++)
             {
-                int num;
                 cin >> num;
-                reqId.push_back(num);
+                if (binary_search(id.begin(), id.end(), num))
+                {
+                    count++;
+                }
             }
-        }
-        int count = 0;
-        sort(reqId.begin(), reqId.end());
-        for (auto i : reqId)
-        {
-            if (binary_search(id.begin(), id.end(), i))
+            if (count < req)
             {
-                count++;
+                found = false;
             }
         }
-        (count >= req) ? cout << "yes\n" : cout << "no\n";
+        cout << (found ? "yes\n" : "no\n");
     }
 }
