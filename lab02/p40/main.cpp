@@ -22,12 +22,12 @@ int main()
     {
         if (row < 0 || col < 0 || row >= r || col >= c)
         {
-            cout << "Out./n";
+            cout << "Out\n";
             break;
         }
         if (count > r * c)
         {
-            cout << "Lost.\n";
+            cout << "Lost\n";
             break;
         }
         if (loc[row][col] == 'T')
