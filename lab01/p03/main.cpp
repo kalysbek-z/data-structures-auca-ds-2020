@@ -17,6 +17,14 @@ void goodSwap1(int &a, int &b)
     b = t;
 }
 
+template <typename T>
+void autoSwap(T &a, T &b)
+{
+    T t = a;
+    a = b;
+    b = t;
+}
+
 int main()
 {
     cout << "1st int: ";
@@ -41,4 +49,11 @@ int main()
     cout << "Before: a = " << a << ", b = " << b << endl;
     goodSwap1(a, b);
     cout << "After: a = " << a << ", b = " << b << endl;
+
+    string x = "hi";
+    string y = "hello";
+    cout << "general swap:\n";
+    cout << "Before: a = " << x << ", b = " << y << endl;
+    autoSwap(x, y);
+    cout << "After: a = " << x << ", b = " << y << endl;
 }
