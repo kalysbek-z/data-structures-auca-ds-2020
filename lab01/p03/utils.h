@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename T>
 void autoSwap(T &a, T &b)
 {
