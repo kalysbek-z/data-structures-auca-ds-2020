@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 
+#include "utils.h"
+
 using namespace std;
 
 void badSwap(int a, int b)
@@ -13,14 +15,6 @@ void badSwap(int a, int b)
 void goodSwap1(int &a, int &b)
 {
     int t = a;
-    a = b;
-    b = t;
-}
-
-template <typename T>
-void autoSwap(T &a, T &b)
-{
-    T t = a;
     a = b;
     b = t;
 }
