@@ -2,9 +2,7 @@
 using namespace std;
 int main()
 {
-    int a;
-    int b;
-    cin >> a >> b;
-    int res = a * (b - 1) + 1;
-    cout << res << "\n";
+    int n;
+    cin >> n;
+    (n % 2 == 0) ? cout << "Bob\n" : cout << "Alice\n";
 }
