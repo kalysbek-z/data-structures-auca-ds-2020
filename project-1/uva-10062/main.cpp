@@ -16,10 +16,16 @@ struct Pair
 int main()
 {
     string s;
+    int counter = 0;
     while (getline(cin, s))
     {
         vector<Pair> pair;
         vector<Pair> result;
+
+        if (counter != 0)
+        {
+            cout << "\n";
+        }
 
         for (int i = 0; i < s.length(); i++)
         {
@@ -71,5 +77,6 @@ int main()
         {
             cout << pair[i].ascii << " " << pair[i].value << "\n";
         }
+        counter++;
     }
 }
