@@ -56,7 +56,7 @@ int main()
     stable_sort(a.begin(), a.end(), [](const Student &g1, const Student &g2) { return g1.mName < g2.mName; });
     for (int i = 0; i < a.size(); i++)
     {
-        cout << a[i].mName << " ";
+        cout << a[i].mName << " " << a[i].mGpa << " ";
     }
     cout << "\n";
 }
