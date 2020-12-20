@@ -8,26 +8,34 @@ int main()
 {
     //A
     int a[] = {3, 1, 20, 4, 7, 0, 5};
-    auto p = find(begin(a), end(a), 0);
+    int nums[] = {3, 20, 100, -5, 4};
 
-    if (p != end(a))
+    for (int i = 0; i < 5; i++)
     {
-        cout << p - (begin(a)) << "\n";
-    }
-    else
-    {
-        cout << "not found\n";
+        auto p = find(begin(a), end(a), nums[i]);
+
+        if (p != end(a))
+        {
+            cout << p - (begin(a)) << "\n";
+        }
+        else
+        {
+            cout << "not found\n";
+        }
     }
 
-    vector<int> b = {3, 1, 20, 4, 7, 0, 5};
-    auto q = find(b.begin(), b.end(), 0);
+    for (int i = 0; i < 5; i++)
+    {
+        vector<int> b = {3, 1, 20, 4, 7, 0, 5};
+        auto q = find(b.begin(), b.end(), nums[i]);
 
-    if (q != b.end())
-    {
-        cout << q - b.begin() << "\n";
-    }
-    else
-    {
-        cout << "not found\n";
+        if (q != b.end())
+        {
+            cout << q - b.begin() << "\n";
+        }
+        else
+        {
+            cout << "not found\n";
+        }
     }
 }
