@@ -50,6 +50,13 @@ void VecInt_createEmpty(struct VecInt *v)
     v->cp = 0;
 }
 
+void VecInt_createOfSize(struct VecInt *v, int n)
+{
+    v->p = (int *)malloc(sizeof(int) * n);
+    v->sz = n;
+    v->cp = n;
+}
+
 void VecInt_pushBack(struct VecInt *v, int x)
 {
     if (v->sz == v->cp)
@@ -68,7 +75,31 @@ void VecInt_pushBack(struct VecInt *v, int x)
     v->sz++;
 }
 
-int main(void)
+void problem04()
+{
+    struct VecInt v;
+
+    int n;
+    scanf("%d", &n);
+
+    VecInt_createOfSize(&v, n);
+
+    for (int i = 0; i < v.sz; i++)
+    {
+        scanf("%d", &v.p[i]);
+    }
+
+    VecInt_pushBack(&v, 12);
+
+    printArray(v.p, v.sz);
+
+    reverse(v.p, v.p + v.sz);
+    printArray(v.p, v.sz);
+
+    free(v.p);
+}
+
+void problem05()
 {
     struct VecInt v;
 
@@ -87,4 +118,9 @@ int main(void)
     printArray(v.p, v.sz);
 
     free(v.p);
+}
+
+int main(void)
+{
+    problem04();
 }
