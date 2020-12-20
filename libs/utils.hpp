@@ -3,9 +3,9 @@
 template <typename T>
 void auSwap(T &a, T &b)
 {
-    T t = std::move(a);
-    a = std::move(b);
-    b = std::move(t);
+    T t = a;
+    a = b;
+    b = t;
 }
 
 template <typename Iter, typename T>
@@ -36,8 +36,8 @@ Iter auFindIf(Iter beg, Iter end, Predicate p)
     return end;
 }
 
-template <typename Iter, typename Predicate>
-Iter auMinElement(Iter beg, Iter end, Predicate p)
+template <typename Iter>
+Iter auMinElement(Iter beg, Iter end)
 {
     if (beg == end)
     {
@@ -47,7 +47,7 @@ Iter auMinElement(Iter beg, Iter end, Predicate p)
     beg++;
     while (beg != end)
     {
-        if (p(*beg, *res))
+        if (*beg < *res)
         {
             res = beg;
         }
@@ -57,7 +57,7 @@ Iter auMinElement(Iter beg, Iter end, Predicate p)
 }
 
 template <typename Iter, typename Predicate>
-Iter auMaxElement(Iter beg, Iter end, Predicate p)
+Iter auMinElement(Iter beg, Iter end, Predicate p)
 {
     if (beg == end)
     {
@@ -84,5 +84,51 @@ void auSelectSort(Iter beg, Iter end, Predicate p)
         Iter iterToMin = auMinElement(beg, end, p);
         auSwap(*beg, *iterToMin);
         beg++;
+    }
+}
+
+template <typename Iter, typename T>
+Iter auLowerBound(Iter beg, Iter end, const T &k)
+{
+    while (beg != end)
+    {
+        auto mid = beg + (end - beg) / 2;
+
+        if (*mid < k)
+        {
+            beg = ++mid;
+        }
+        else
+        {
+            end = mid;
+        }
+    }
+    return beg;
+}
+
+template <typename Iter, typename T>
+bool auBinarySearch(Iter beg, Iter end, const T &k)
+{
+    Iter lb = auLowerBound(beg, end, k);
+    return *lb == k;
+}
+
+template <typename Iter, typename Predicate>
+void auInsertSort(Iter beg, Iter end, Predicate p)
+{
+    auto i = beg + 1;
+
+    while (i != end)
+    {
+        auto j = i - 1;
+        auto t = *i;
+
+        while (j - beg >= 0 && p(t, *j))
+        {
+            *(j + 1) = *j;
+            j--;
+        }
+        *(j + 1) = t;
+        i++;
     }
 }
