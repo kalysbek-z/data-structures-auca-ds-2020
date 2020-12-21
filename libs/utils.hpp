@@ -132,3 +132,25 @@ void auInsertSort(Iter beg, Iter end, Predicate p)
         i++;
     }
 }
+
+template <typename Iter>
+void auReverse(Iter *beg, Iter *end)
+{
+    for (;;)
+    {
+        if (beg == end)
+        {
+            break;
+        }
+
+        --end;
+
+        if (beg == end)
+        {
+            break;
+        }
+
+        auSwap(*beg, *end);
+        beg++;
+    }
+}
