@@ -12,7 +12,7 @@ int main()
     int n;
     while (cin >> n)
     {
-        /* code */
+
         if (auBinarySearch(v.begin(), v.end(), n))
         {
             cout << "Yes\n";
