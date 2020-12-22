@@ -76,7 +76,27 @@ void problem0201()
     cout << (v == w ? "palindrome" : "not a palindrome") << "\n";
 }
 
+void problem0202()
+{
+    VecInt a = {1, 2, 3, 4};
+    VecInt b = {5, 6, 7, 8, 9, 10};
+
+    auSwap(a, b);
+
+    for (int e : a)
+    {
+        cout << e << " ";
+    }
+    cout << "\n";
+
+    for (int e : b)
+    {
+        cout << e << " ";
+    }
+    cout << "\n";
+}
+
 int main(void)
 {
-    problem0201();
+    problem0202();
 }

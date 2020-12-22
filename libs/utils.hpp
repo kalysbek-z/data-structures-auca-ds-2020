@@ -1,11 +1,23 @@
 #pragma once
 
+#include <utility>
+
 template <typename T>
 void auSwap(T &a, T &b)
 {
-    T t = a;
-    a = b;
-    b = t;
+    T t = std::move(a);
+    a = std::move(b);
+    b = std::move(t);
+}
+
+template <typename SourceIter, typename DestIter>
+DestIter auCopy(SourceIter beg, SourceIter end, DestIter cur)
+{
+    while (beg != end)
+    {
+        *cur++ = *beg++;
+    }
+    return cur;
 }
 
 template <typename Iter, typename T>

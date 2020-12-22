@@ -1,4 +1,5 @@
 #include "VecInt.hpp"
+#include "../../libs/utils.hpp"
 
 VecInt::VecInt(std::size_t n)
     : p(new int[n]), sz(n), cp(n)
@@ -7,6 +8,12 @@ VecInt::VecInt(std::size_t n)
     {
         p[i] = 0;
     }
+}
+
+VecInt::VecInt(std::initializer_list<int> init)
+    : p(new int[init.size()]), sz(init.size()), cp(init.size())
+{
+    auCopy(init.begin(), init.end(), p);
 }
 
 VecInt::~VecInt()
@@ -52,10 +59,7 @@ bool operator==(const VecInt &a, const VecInt &b)
 VecInt::VecInt(const VecInt &other)
     : p(new int[other.sz]), sz(other.sz), cp(other.cp)
 {
-    for (size_t i = 0; i < sz; i++)
-    {
-        p[i] = other.p[i];
-    }
+    auCopy(other.begin(), other.end(), p);
 }
 
 VecInt &VecInt::operator=(const VecInt &other)
@@ -63,10 +67,7 @@ VecInt &VecInt::operator=(const VecInt &other)
     if (this != &other)
     {
         int *newP = new int[other.sz];
-        for (size_t i = 0; i < other.sz; i++)
-        {
-            newP[i] = other.p[i];
-        }
+        auCopy(other.begin(), other.end(), newP);
         delete[] p;
         p = newP;
         sz = other.sz;

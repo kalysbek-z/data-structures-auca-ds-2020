@@ -1,6 +1,7 @@
 #pragma once
 #include <cstddef>
 #include <iostream>
+#include <initializer_list>
 
 class VecInt
 {
@@ -16,9 +17,19 @@ public:
 
     VecInt(std::size_t n);
 
+    VecInt(std::initializer_list<int> init);
+
     VecInt(const VecInt &other);
 
     VecInt &operator=(const VecInt &other);
+
+    VecInt(VecInt &&other)
+        : p(other.p), sz(other.sz), cp(other.cp)
+    {
+        other.p = nullptr;
+        other.sz = 0;
+        other.cp = 0;
+    }
 
     ~VecInt();
 
