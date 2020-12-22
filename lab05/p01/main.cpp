@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void problem04()
+void problem0101()
 {
     int n;
     cin >> n;
@@ -36,7 +36,7 @@ void problem04()
     cout << "\n";
 }
 
-void problem05()
+void problem0102()
 {
     VecInt v;
 
@@ -60,7 +60,23 @@ void problem05()
     cout << "\n";
 }
 
+void problem0201()
+{
+    VecInt v;
+
+    for (int n; cin >> n;)
+    {
+        v.pushBack(n);
+    }
+
+    VecInt w = v;
+
+    auReverse(w.begin(), w.end());
+
+    cout << (v == w ? "palindrome" : "not a palindrome") << "\n";
+}
+
 int main(void)
 {
-    problem05();
+    problem0201();
 }
