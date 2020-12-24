@@ -33,6 +33,15 @@ struct Team
     }
 };
 
+struct CmpByName
+{
+    /* data */
+    bool operator()(Team t1, Team t2)
+    {
+        return t1.name < t2.name;
+    }
+};
+
 void main()
 {
     int n;
@@ -54,6 +63,8 @@ void main()
             teams[i] = Team(team_tmp);
         }
 
+        sort(teams.begin(), teams.end(), CmpByName());
+
         string t1, t2;
         int sc1, sc2;
 
@@ -70,10 +81,13 @@ void main()
             cin.get();
             getline(cin, t2);
 
-            if ()
-                teams[i].goals += sc1;
-            teams[i].goals_against += sc2;
-            teams[i].games++;
+            auto it1 = lower_bound(teams.begin(), teams.end(), t1, CmpByName());
+            auto it2 = lower_bound(teams.begin(), teams.end(), t2, CmpByName());
+
+            it1->goals += sc1;
+            it1->goals_against += sc2;
+            it2->goals += sc2;
+            it2->goals_against += sc1;
         }
     }
 }
