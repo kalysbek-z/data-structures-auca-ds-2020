@@ -14,18 +14,6 @@ struct Team
     int goals;
     int goals_against;
 
-    Team()
-        : name(""),
-          points(0),
-          games(0),
-          wins(0),
-          ties(0),
-          loses(0),
-          goals(0),
-          goals_against(0)
-    {
-    }
-
     Team(string n)
     {
         name = n;
@@ -70,22 +58,34 @@ struct CmpByResult
 int main()
 {
     int n;
+    string str;
     cin >> n; //tournaments
-    vector<Team> teams(31);
+    // vector<Team> teams;
+    int c = 0;
+
+    getline(cin, str);
 
     while (n--)
     {
+        if (c++)
+        {
+            cout << "\n";
+        }
+        vector<Team> teams;
+
         string tn;
-        cin >> tn;
+        getline(cin, tn);
+
         int teamN;
-        cin >> teamN;
+        getline(cin, str);
+        teamN = stoi(str);
 
         string team_tmp;
 
         for (int i = 0; i < teamN; i++)
         {
             getline(cin, team_tmp);
-            teams[i] = Team(team_tmp);
+            teams.emplace_back(team_tmp);
         }
 
         sort(teams.begin(), teams.end(), CmpByName());
@@ -94,7 +94,8 @@ int main()
         int sc1, sc2;
 
         int g;
-        cin >> g;
+        getline(cin, str);
+        g = stoi(str);
 
         for (int i = 0; i < g; i++)
         {
@@ -136,15 +137,23 @@ int main()
                 it2->ties++;
                 it2->points++;
             }
+        }
 
-            sort(teams.begin(), teams.end(), CmpByResult());
+        sort(teams.begin(), teams.end(), CmpByResult());
 
-            cout << tn << "\n";
+        cout << tn << "\n";
 
-            for (int i = 0; i < n; i++)
-            {
-                cout << i + 1 << ") " << teams[i].name;
-                        }
+        for (int i = 0; i < teamN; i++)
+        {
+            cout << i + 1 << ") " << teams[i].name;
+            printf(" %dp, %dg (%d-%d-%d), %dgd (%d-%d)\n",
+                   teams[i].points,
+                   teams[i].wins + teams[i].ties + teams[i].loses,
+                   teams[i].wins, teams[i].ties,
+                   teams[i].loses,
+                   teams[i].goals - teams[i].goals_against,
+                   teams[i].goals,
+                   teams[i].goals_against);
         }
     }
 }
