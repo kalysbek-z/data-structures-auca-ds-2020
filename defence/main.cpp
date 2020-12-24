@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <bits/stdc++.h>
+#include <iterator>
 #include <algorithm>
 #include <cctype>
 #include <vector>
@@ -7,34 +9,44 @@
 
 using namespace std;
 
-int main()
+class T
+{
+    int *p;
+    int sz;
+
+public:
+    T(int n) : p((int *)malloc(sizeof(int) * n)), sz(n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            p[i] = 0;
+        }
+    }
+
+    ~T()
+    {
+        free(p);
+    }
+
+    size_t size()
+    {
+        return sz;
+    }
+
+    int operator[](int index)
+    {
+        return p[index];
+    }
+};
+
+main()
 {
     int n;
     cin >> n;
-    int cases = 1;
-    while (n--)
+    T t(n);
+
+    for (size_t i = 0; i < t.size(); ++i)
     {
-        cout << "Case " << cases << ":\n";
-        cases++;
-        vector<string> sites(10);
-        vector<int> rel(10);
-        int maxim = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            cin >> sites[i] >> rel[i];
-
-            if (rel[i] > maxim)
-            {
-                maxim = rel[i];
-            }
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (rel[i] == maxim)
-            {
-                cout << sites[i] << endl;
-            }
-        }
+        cout << t[i];
     }
 }
