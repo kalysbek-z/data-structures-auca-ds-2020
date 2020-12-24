@@ -42,7 +42,32 @@ struct CmpByName
     }
 };
 
-void main()
+struct CmpByResult
+{
+    /* data */
+    bool operator()(Team t1, Team t2)
+    {
+        if (t1.points != t2.points)
+            return t1.points > t2.points;
+        if (t1.wins != t2.wins)
+            return t1.wins > t2.wins;
+        if (t1.goals - t1.goals_against != t2.goals - t2.goals_against)
+            return t1.goals - t1.goals_against > t2.goals - t2.goals_against;
+        if (t1.goals != t2.goals)
+            return t1.goals > t2.goals;
+        if (t1.wins + t1.ties + t1.loses != t2.wins + t2.ties + t2.loses)
+            return t1.wins + t1.ties + t1.loses < t2.wins + t2.ties + t2.loses;
+
+        string t1n = t1.name;
+        string t2n = t2.name;
+
+        transform(t1n.begin(), t1n.end(), t1n.begin(), ::tolower);
+        transform(t2n.begin(), t2n.end(), t2n.begin(), ::tolower);
+        return t1n < t2n;
+    }
+};
+
+int main()
 {
     int n;
     cin >> n; //tournaments
@@ -88,6 +113,38 @@ void main()
             it1->goals_against += sc2;
             it2->goals += sc2;
             it2->goals_against += sc1;
+
+            if (sc1 > sc2)
+            {
+                it1->wins++;
+                it1->points += 3;
+
+                it2->loses++;
+            }
+            else if (sc2 > sc1)
+            {
+                it1->loses++;
+
+                it2->wins++;
+                it2->points += 3;
+            }
+            else
+            {
+                it1->ties++;
+                it1->points++;
+
+                it2->ties++;
+                it2->points++;
+            }
+
+            sort(teams.begin(), teams.end(), CmpByResult());
+
+            cout << tn << "\n";
+
+            for (int i = 0; i < n; i++)
+            {
+                cout << i + 1 << ") " << teams[i].name;
+                        }
         }
     }
 }
