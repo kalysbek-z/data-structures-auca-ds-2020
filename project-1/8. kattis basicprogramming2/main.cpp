@@ -68,12 +68,20 @@ int main()
     }
     else
     {
-        for (int i = 0; i < n; i++)
+        // for (int i = 0; i < n; i++)
+        // {
+        //     if (nums[i] >= 100 && nums[i] <= 999)
+        //     {
+        //         cout << nums[i] << " ";
+        //     }
+        // }
+        // cout << "\n";
+        auto it1 = lower_bound(nums.begin(), nums.end(), 100);
+        auto it2 = upper_bound(nums.begin(), nums.end(), 999);
+
+        for (; it1 - nums.begin() < it2 - nums.begin(); it1++)
         {
-            if (nums[i] >= 100 && nums[i] <= 999)
-            {
-                cout << nums[i] << " ";
-            }
+            cout << nums[it1 - nums.begin()] << " ";
         }
         cout << "\n";
     }
