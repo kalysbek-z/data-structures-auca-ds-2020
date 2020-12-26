@@ -59,6 +59,8 @@ int main()
         vector<Submission> teams;
         vector<pair<int, char>> submissions[101][10];
 
+        //
+
         for (int i = 0; i < 101; i++)
         {
             teams.emplace_back(i, false);
