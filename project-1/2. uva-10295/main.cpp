@@ -35,6 +35,7 @@ int main()
 
         for (string w; cin >> w && w != ".";)
         {
+
             auto p = lower_bound(begin(skills), end(skills), Skill(w, 0), [](const Skill s1, const Skill s2) {
                 return s1.name < s2.name;
             });
