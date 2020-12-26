@@ -15,17 +15,17 @@ int main()
             {
                 char c;
                 cin >> c;
-                v[i].push_back(c);
+                v[j].push_back(c);
             }
         }
 
         stable_sort(v.begin(), v.end(), [](string s1, string s2) {
-            for (int i = 0; i < s1.size(); i++)
+            for (auto &i : s1)
             {
                 i = tolower(i);
             }
 
-            for (int i = 0; i < s2.size(); i++)
+            for (auto &i : s2)
             {
                 i = tolower(i);
             }
@@ -41,5 +41,6 @@ int main()
             }
             cout << "\n";
         }
+        cout << "\n";
     }
 }
