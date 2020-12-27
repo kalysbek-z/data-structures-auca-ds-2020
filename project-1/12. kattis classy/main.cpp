@@ -10,12 +10,15 @@ int main()
     {
         vector<pair<string, string>> names;
         int t;
+        string s;
         cin >> t;
         for (int i = 0; i < t; i++)
         {
             string name, clas, x;
             int rank = 0;
-            cin >> name >> clas >> x;
+            getline(cin, s);
+            getline(cin, name, ':');
+            cin >> clas >> x;
 
             // for (int j = 0; j < clas.size(); j++)
             // {
@@ -36,10 +39,14 @@ int main()
             // cout << rank << "\n";
             pair<string, string> p = make_pair(name, clas);
             names.push_back(p);
-            names[i].first.pop_back();
+            // names[i].first.pop_back();
         }
 
         sort(names.begin(), names.end(), [](pair<string, string> p1, pair<string, string> p2) {
+            return p1.first < p2.first;
+        });
+
+        stable_sort(names.begin(), names.end(), [](pair<string, string> p1, pair<string, string> p2) {
             int rank1 = 0;
             for (int j = 0; j < p1.second.size(); j++)
             {
