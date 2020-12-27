@@ -14,7 +14,7 @@ void make(vector<string> &v)
     }
 
     sort(v.begin(), v.end(), [](string s1, string s2) {
-        reverse(s1.begin(), s2.end());
+        reverse(s1.begin(), s1.end());
         reverse(s2.begin(), s2.end());
         return s1 < s2;
     });
