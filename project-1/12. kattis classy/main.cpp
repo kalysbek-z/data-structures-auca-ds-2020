@@ -24,12 +24,44 @@ int main()
             // cout << "name " << names[i].first << " h: " << names[i].second << "\n";
         }
 
-        stable_sort(names.begin(), names.end(), [](pair<string, string> &p1, pair<string, string> &p2) {
-            int h1 = 0, h2 = 0;
+        stable_sort(names.begin(), names.end(), [](pair<string, string> p1, pair<string, string> p2) {
+            int h1 = 1, h2 = 1;
+            int pos = 0;
+            string up = "upper";
+            string mid = "middle";
 
-            for (int i = 0; i < p1.second.size(); i++)
+            while ((pos = p1.second.find(up, pos)) != string::npos)
             {
-                        }
-        })
+                h1 *= 3;
+                pos += up.length();
+            }
+
+            while ((pos = p1.second.find(mid, pos)) != string::npos)
+            {
+                h1 *= 2;
+                pos += up.length();
+            }
+
+            pos = 0;
+
+            while ((pos = p2.second.find(up, pos)) != string::npos)
+            {
+                h1 *= 3;
+                pos += up.length();
+            }
+
+            while ((pos = p2.second.find(mid, pos)) != string::npos)
+            {
+                h2 *= 2;
+                pos += up.length();
+            }
+
+            return h1 > h2;
+        });
+
+        for (int i = 0; i < names.size(); i++)
+        {
+            cout << names[i].first << "\n";
+        }
     }
 }
