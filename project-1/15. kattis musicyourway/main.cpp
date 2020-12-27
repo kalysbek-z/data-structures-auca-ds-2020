@@ -9,6 +9,7 @@ int main()
     getline(cin, s);
 
     vector<string> cat;
+    cat.push_back("");
 
     for (auto i : s)
     {
@@ -28,7 +29,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         vector<string> song;
-        for (int j = 0; j < cat.size(); i++)
+        for (int j = 0; j < cat.size(); j++)
         {
             string ss;
             cin >> ss;
@@ -48,7 +49,27 @@ int main()
         {
             if (cat[i] == q)
             {
+                ind = i;
             }
+        }
+
+        stable_sort(v.begin(), v.end(), [ind](vector<string> v1, vector<string> v2) {
+            return v1[ind] < v2[ind];
+        });
+
+        cout << s << "\n";
+        for (auto i : v)
+        {
+            for (auto j : i)
+            {
+                cout << j << " ";
+            }
+            cout << "\n";
+        }
+
+        if (i != queries - 1)
+        {
+            cout << "\n";
         }
     }
 }
