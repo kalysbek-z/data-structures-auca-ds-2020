@@ -8,51 +8,45 @@ int main()
     cin >> n;
     while (n--)
     {
-        vector<pair<string, string>> names;
+        vector<pair<string, int>> names;
         int t;
         cin >> t;
         for (int i = 0; i < t; i++)
         {
             string name, clas, x;
-            string rank;
+            int rank = 0;
             cin >> name >> clas >> x;
+
             for (int j = 0; j < clas.size(); j++)
             {
-                if (clas[i] == 'u')
+                if (clas[j] == 'u')
                 {
-                    rank += 'a';
+                    rank += 1;
                 }
-                if (clas[i] == 'm')
+                if (clas[j] == 'm')
                 {
-                    rank += 'b';
+                    rank += 0;
                 }
-                if (clas[i] == 'o')
+                if (clas[j] == 'o')
                 {
-                    rank += 'c';
+                    rank += -1;
                 }
             }
-            int l = rank.size();
 
-            for (int j = 0; j < l / 2; j++)
-            {
-                swap(rank[j], rank[l - j - 1]);
-            }
-
-            while (l < 10)
-            {
-                l++;
-                rank += 'b';
-            }
-
-            pair<string, string> p = make_pair(name, rank);
+            // cout << rank << "\n";
+            pair<string, int> p = make_pair(name, rank);
             names.push_back(p);
+            names[i].first.pop_back();
         }
 
-        stable_sort(names.begin(), names.end());
+        stable_sort(names.begin(), names.end(), [](pair<string, int> p1, pair<string, int> p2) {
+            return p1.second > p2.second;
+        });
 
         for (int i = 0; i < names.size(); i++)
         {
             cout << names[i].first << "\n";
         }
+        cout << "==============================\n";
     }
 }
