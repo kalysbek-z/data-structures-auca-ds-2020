@@ -13,83 +13,97 @@ struct KingPokerHand
     {
     }
 
+    friend ostream &operator<<(ostream &out, const KingPokerHand &hand)
+    {
+        cout << hand.card1 << " "
+             << hand.card2 << " "
+             << hand.card3;
+
+        return out;
+    }
+
     bool operator<(const KingPokerHand &other) const
     {
-        if (card1 < other.card1)
+        // if (card1 < other.card1)
+        // {
+        //     return true;
+        // }
+        // if (card1 == other.card1 && card2 < other.card2)
+        // {
+        //     return true;
+        // }
+        // if (card1 == other.card1 && card2 == other.card2 && card3 < other.card3)
+        // {
+        //     return true;
+        // }
+
+        // return false;
+
+        if (card1 == card2 && card2 == card3 && card1 == card3 &&
+            other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3)
+        {
+            return card1 < other.card1;
+        }
+        if ((card1 == card2 && card2 == card3 && card1 == card3) ||
+            (other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3))
+        {
+            return other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3;
+        }
+
+        if (card1 == card2)
+        {
+            if (other.card1 == other.card2)
+            {
+                if (card1 != other.card1)
+                {
+                    return card1 < other.card1;
+                }
+                return card3 < other.card3;
+            }
+
+            if (other.card2 == other.card3)
+            {
+                if (card1 != other.card2)
+                {
+                    return card1 < other.card2;
+                }
+                return card3 < other.card1;
+            }
+            return false;
+        }
+
+        if (card2 == card3)
+        {
+            if (other.card2 == other.card3)
+            {
+                if (card2 != other.card2)
+                {
+                    return card2 < other.card2;
+                }
+                return card1 < other.card1;
+            }
+            if (other.card1 == other.card2)
+            {
+                if (card2 != other.card1)
+                {
+                    return card2 < other.card1;
+                }
+                return card1 < other.card3;
+            }
+            return false;
+        }
+
+        if (other.card1 == other.card2 || other.card2 == other.card3)
         {
             return true;
         }
-        if (card1 == other.card1 && card2 < other.card2)
-        {
-            return true;
-        }
-        if (card1 == other.card1 && card2 == other.card2 && card3 < other.card3)
-        {
-            return true;
-        }
 
-        return false;
+        return card3 < other.card3;
+    }
 
-        //     if (card1 == card2 && card2 == card3 && card1 == card3 &&
-        //         other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3)
-        //     {
-        //         return card1 < other.card1;
-        //     }
-        //     if ((card1 == card2 && card2 == card3 && card1 == card3) ||
-        //         (other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3))
-        //     {
-        //         return other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3;
-        //     }
-
-        //     if (card1 == card2)
-        //     {
-        //         if (other.card1 == other.card2)
-        //         {
-        //             if (card1 != other.card1)
-        //             {
-        //                 return card1 < other.card1;
-        //             }
-        //             return card3 < other.card3;
-        //         }
-
-        //         if (other.card2 == other.card3)
-        //         {
-        //             if (card1 != other.card2)
-        //             {
-        //                 return card1 < other.card2;
-        //             }
-        //             return card3 < other.card1;
-        //         }
-        //         return false;
-        //     }
-
-        //     if (card2 == card3)
-        //     {
-        //         if (other.card2 == other.card3)
-        //         {
-        //             if (card2 != other.card2)
-        //             {
-        //                 return card2 < other.card2;
-        //             }
-        //             return card1 < other.card1;
-        //         }
-        //         if (other.card1 == other.card2)
-        //         {
-        //             if (card2 != other.card1)
-        //             {
-        //                 return card2 < other.card1;
-        //             }
-        //             return card1 < other.card3;
-        //         }
-        //         return false;
-        //     }
-
-        //     if (other.card1 == other.card2 || other.card2 == other.card3)
-        //     {
-        //         return true;
-        //     }
-
-        //     return card3 < other.card3;
+    bool operator==(const KingPokerHand &other) const
+    {
+        return card1 == other.card1 && card2 == other.card2 && card3 == other.card3;
     }
 };
 
