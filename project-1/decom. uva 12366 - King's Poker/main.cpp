@@ -9,8 +9,49 @@ struct KingPokerHand
     int card3;
 
     KingPokerHand(int c1, int c2, int c3)
-        : card1(c1), card2(c2), card3(c3)
     {
+        if (c1 > c2 && c1 > c3)
+        {
+            if (c2 > c3)
+            {
+                card2 = c2;
+                card3 = c3;
+            }
+            else if (c3 > c2)
+            {
+                card2 = c3;
+                card3 = c2;
+            }
+            card1 = c1;
+        }
+        if (c2 > c1 && c2 > c3)
+        {
+            if (c1 > c3)
+            {
+                card1 = c1;
+                card3 = c3;
+            }
+            else if (c3 > c1)
+            {
+                card1 = c3;
+                card3 = c1;
+            }
+            card2 = c2;
+        }
+        if (c3 > c1 && c3 > c2)
+        {
+            if (c1 > c2)
+            {
+                card1 = c1;
+                card2 = c2;
+            }
+            else if (c2 > c1)
+            {
+                card1 = c2;
+                card2 = c1;
+            }
+            card2 = c2;
+        }
     }
 
     friend ostream &operator<<(ostream &out, const KingPokerHand &hand)
@@ -24,21 +65,6 @@ struct KingPokerHand
 
     bool operator<(const KingPokerHand &other) const
     {
-        // if (card1 < other.card1)
-        // {
-        //     return true;
-        // }
-        // if (card1 == other.card1 && card2 < other.card2)
-        // {
-        //     return true;
-        // }
-        // if (card1 == other.card1 && card2 == other.card2 && card3 < other.card3)
-        // {
-        //     return true;
-        // }
-
-        // return false;
-
         if (card1 == card2 && card2 == card3 && card1 == card3 &&
             other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3)
         {
@@ -134,26 +160,26 @@ int main()
 
     sort(begin(hands), end(hands));
 
-    for (int i = 0; i < hands.size(); i++)
-    {
-        printf("%d %d %d\n", hands[i].card1, hands[i].card2, hands[i].card3);
-    }
-
-    // for (int a, b, c; cin >> a >> b >> c && a + b + c > 0;)
+    // for (int i = 0; i < hands.size(); i++)
     // {
-    //     KingPokerHand h(a, b, c);
-
-    //     if (!binary_search(begin(hands), end(hands), h))
-    //     {
-    //         cout << hands.front() << "\n";
-    //     }
-    //     else if (h == hands.back())
-    //     {
-    //         cout << "*\n";
-    //     }
-    //     else
-    //     {
-    //         cout << *upper_bound(begin(hands), end(hands), h) << "\n";
-    //     }
+    //     printf("%d %d %d\n", hands[i].card1, hands[i].card2, hands[i].card3);
     // }
+
+    for (int a, b, c; cin >> a >> b >> c && a + b + c > 0;)
+    {
+        KingPokerHand h(a, b, c);
+
+        if (!binary_search(begin(hands), end(hands), h))
+        {
+            cout << hands.front() << "\n";
+        }
+        else if (h == hands.back())
+        {
+            cout << "*\n";
+        }
+        else
+        {
+            cout << *upper_bound(begin(hands), end(hands), h) << "\n";
+        }
+    }
 }
