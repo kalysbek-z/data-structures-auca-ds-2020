@@ -9,48 +9,19 @@ struct KingPokerHand
     int card3;
 
     KingPokerHand(int c1, int c2, int c3)
+        : card1(c1), card2(c2), card3(c3)
     {
-        if (c1 > c2 && c1 > c3)
+        if (card1 > card2)
         {
-            if (c2 > c3)
-            {
-                card2 = c2;
-                card3 = c3;
-            }
-            else if (c3 > c2)
-            {
-                card2 = c3;
-                card3 = c2;
-            }
-            card1 = c1;
+            swap(card1, card2);
         }
-        if (c2 > c1 && c2 > c3)
+        if (card2 > card3)
         {
-            if (c1 > c3)
-            {
-                card1 = c1;
-                card3 = c3;
-            }
-            else if (c3 > c1)
-            {
-                card1 = c3;
-                card3 = c1;
-            }
-            card2 = c2;
+            swap(card2, card3);
         }
-        if (c3 > c1 && c3 > c2)
+        if (card1 > card2)
         {
-            if (c1 > c2)
-            {
-                card1 = c1;
-                card2 = c2;
-            }
-            else if (c2 > c1)
-            {
-                card1 = c2;
-                card2 = c1;
-            }
-            card2 = c2;
+            swap(card1, card2);
         }
     }
 
