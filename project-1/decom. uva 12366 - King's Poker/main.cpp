@@ -12,6 +12,85 @@ struct KingPokerHand
         : card1(c1), card2(c2), card3(c3)
     {
     }
+
+    bool operator<(const KingPokerHand &other) const
+    {
+        if (card1 < other.card1)
+        {
+            return true;
+        }
+        if (card1 == other.card1 && card2 < other.card2)
+        {
+            return true;
+        }
+        if (card1 == other.card1 && card2 == other.card2 && card3 < other.card3)
+        {
+            return true;
+        }
+
+        return false;
+
+        //     if (card1 == card2 && card2 == card3 && card1 == card3 &&
+        //         other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3)
+        //     {
+        //         return card1 < other.card1;
+        //     }
+        //     if ((card1 == card2 && card2 == card3 && card1 == card3) ||
+        //         (other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3))
+        //     {
+        //         return other.card1 == other.card2 && other.card2 == other.card3 && other.card1 == other.card3;
+        //     }
+
+        //     if (card1 == card2)
+        //     {
+        //         if (other.card1 == other.card2)
+        //         {
+        //             if (card1 != other.card1)
+        //             {
+        //                 return card1 < other.card1;
+        //             }
+        //             return card3 < other.card3;
+        //         }
+
+        //         if (other.card2 == other.card3)
+        //         {
+        //             if (card1 != other.card2)
+        //             {
+        //                 return card1 < other.card2;
+        //             }
+        //             return card3 < other.card1;
+        //         }
+        //         return false;
+        //     }
+
+        //     if (card2 == card3)
+        //     {
+        //         if (other.card2 == other.card3)
+        //         {
+        //             if (card2 != other.card2)
+        //             {
+        //                 return card2 < other.card2;
+        //             }
+        //             return card1 < other.card1;
+        //         }
+        //         if (other.card1 == other.card2)
+        //         {
+        //             if (card2 != other.card1)
+        //             {
+        //                 return card2 < other.card1;
+        //             }
+        //             return card1 < other.card3;
+        //         }
+        //         return false;
+        //     }
+
+        //     if (other.card1 == other.card2 || other.card2 == other.card3)
+        //     {
+        //         return true;
+        //     }
+
+        //     return card3 < other.card3;
+    }
 };
 
 int main()
@@ -41,21 +120,26 @@ int main()
 
     sort(begin(hands), end(hands));
 
-    for (int a, b, c; cin >> a >> b >> c && a + b + c > 0;)
+    for (int i = 0; i < hands.size(); i++)
     {
-        KingPokerHand h(a, b, c);
-
-        if (!binary_search(begin(hands), end(hands), h))
-        {
-            cout << hands.front() << "\n";
-        }
-        else if (h == hands.back())
-        {
-            cout << "*\n";
-        }
-        else
-        {
-            cout << *upper_bound(begin(hands), end(hands), h) << "\n";
-        }
+        printf("%d %d %d\n", hands[i].card1, hands[i].card2, hands[i].card3);
     }
+
+    // for (int a, b, c; cin >> a >> b >> c && a + b + c > 0;)
+    // {
+    //     KingPokerHand h(a, b, c);
+
+    //     if (!binary_search(begin(hands), end(hands), h))
+    //     {
+    //         cout << hands.front() << "\n";
+    //     }
+    //     else if (h == hands.back())
+    //     {
+    //         cout << "*\n";
+    //     }
+    //     else
+    //     {
+    //         cout << *upper_bound(begin(hands), end(hands), h) << "\n";
+    //     }
+    // }
 }
